@@ -4,6 +4,12 @@ export default class HandleTasks {
     this.UI = UI;
   }
 
+  #privateResetandAddValue(input, obj) {
+    input.value = '';
+    this.store.add(obj);
+    this.UI.generateHtmlTasks();
+  }
+
   addItem() {
     this.input = document.getElementById('add-task');
     this.arrowIcon = document.querySelector('.arrow-icon');
@@ -17,9 +23,8 @@ export default class HandleTasks {
           completed: false,
           index: i,
         };
-        this.input.value = '';
-        this.store.add(obj);
-        this.UI.generateHtmlTasks();
+
+        this.#privateResetandAddValue(this.input, obj);
         e.preventDefault();
       }
     });
@@ -32,9 +37,7 @@ export default class HandleTasks {
           completed: false,
           index: i,
         };
-        this.input.value = '';
-        this.store.add(obj);
-        this.UI.generateHtmlTasks();
+        this.#privateResetandAddValue(this.input, obj);
       }
     });
   }
